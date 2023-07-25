@@ -8,27 +8,37 @@ const Form = () => {
   const [img, setImg] = useState(''); 
   const [authorId, setAuthorId] = useState(1); 
   const [sectionId, setSectionId] = useState(1); 
+  const [canSubmit, setCanSubmit] = useState(false);
 
   const handleTitle = (e) => {
     setTitle(e.target.value); 
+    verificarDatos();
   }
   const handleSubtitle = (e) => {
-    setSubtitle(e.target.value); 
+    setSubtitle(e.target.value);
+    verificarDatos(); 
   }
   const handleContent = (e) => {
-    setContent(e.target.value); 
+    setContent(e.target.value);
+    verificarDatos(); 
   }
   const handleImg = (e) => {
     setImg(e.target.files[0].name);
+    verificarDatos();
+    // Datos de la imagen:
+    console.group("Datos de la img:")
     console.log("name:", e.target.files[0].name)
     console.log("type:", e.target.files[0].type)
     console.log("size (Bytes):", e.target.files[0]) 
+    console.groupEnd()
   }
   const handleAuthorId = (e) => {
     setAuthorId(e.target.value); 
+    verificarDatos();
   }
   const handleSectionId = (e) => {
     setSectionId(e.target.value);
+    verificarDatos();
     // Datos del form
     console.group("Datos del formulario:")
     console.log("title:", title);
@@ -44,13 +54,23 @@ const Form = () => {
     setSubtitle('');
     setContent('');
     setImg('');
+    document.getElementById("img").value = "";
+    document.getElementById("content").value = "";
     setAuthorId(1) // nunca cambia por ahora
     setSectionId(1)// valor por defecto
   }
+  const verificarDatos = () => {
   // Campos requeridos:
-  // const required = [
-  //   "title", "content", "authorId", "sectionId"
-  // ]
+  // "title", "content", "authorId", "sectionId"
+    if(title.length > 0 && 
+      content.length > 0 && 
+      authorId && sectionId){
+      setCanSubmit(true);
+    }else{
+      setCanSubmit(false);
+    }
+  }
+  
   const handleSubmit = (e) => {
     e.preventDefault(); // Evita que se recargue la página
 
@@ -93,10 +113,10 @@ const Form = () => {
       </div>
       {/* Contenido del post */}
       <div className='mb-3'>
-        <label className='form-label'>Contenido *</label>
-        <textarea id="content" className='form-control' placeholder="Contenido" 
+        <label htmlFor="content" className='form-label'>Contenido *</label>
+        <textarea id="content" className='form-control' placeholder="Escribe el contenido..." 
         style={{height: "150px", width: "100%"}}
-        defaultValue="Escribe el contenido..." 
+        // defaultValue="Escribe el contenido..." 
         onChange={handleContent}></textarea>
       </div>
       {/* Autor del post - no se puede editar */}
@@ -127,7 +147,9 @@ const Form = () => {
       </select>
       </div>
 
-      <button id="enviar-btn" onClick={handleSubmit}className='btn btn-secondary' disabled>Enviar</button>
+      {canSubmit && <button id="enviar-btn" onClick={handleSubmit}className='btn btn-primary'>Enviar</button>}
+      {!canSubmit && <button id="enviar-btn" onClick={handleSubmit}className='btn btn-secondary' disabled>Enviar</button>}
+      
     </form>
   </div>
   </div>

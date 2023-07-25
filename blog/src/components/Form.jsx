@@ -20,29 +20,32 @@ const Form = () => {
   }
   const handleImg = (e) => {
     setImg(e.target.files[0].name);
-    console.log("filename:", e.target.files[0].name)
+    console.log("name:", e.target.files[0].name)
     console.log("type:", e.target.files[0].type)
-    console.log("size (Bytes):", e.target.files[0])
-    console.log("title:", title);
-    console.log("subtitle:", subtitle);
-    console.log("content:", content);
-    console.log("img:", e.target.value);
-    console.log("authorId:", authorId); 
-    console.log("sectionId:", sectionId); 
+    console.log("size (Bytes):", e.target.files[0]) 
   }
   const handleAuthorId = (e) => {
     setAuthorId(e.target.value); 
   }
   const handleSectionId = (e) => {
     setSectionId(e.target.value);
+    // Datos del form
+    console.group("Datos del formulario:")
+    console.log("title:", title);
+    console.log("subtitle:", subtitle);
+    console.log("content:", content);
+    console.log("img:", img)
+    console.log("authorId:", authorId); 
+    console.log("sectionId:", e.target.value);
+    console.groupEnd()
   }
   const resetearCampos = () => {
     setTitle('');
+    setSubtitle('');
     setContent('');
-    setTags('');
-    document.getElementById("title").value = "";
-    document.getElementById("content").value = "";
-    document.getElementById("tags").value = "";
+    setImg('');
+    setAuthorId(1) // nunca cambia por ahora
+    setSectionId(1)// valor por defecto
   }
   // Campos requeridos:
   // const required = [
@@ -77,34 +80,46 @@ const Form = () => {
       {/* Título */}
       <div className='mb-3'>
       <label className='form-label'>Titulo *</label>
-      <input className='form-control' id="title" type="text" placeholder="Titulo" onChange={handleTitle} />
+      <input className='form-control' id="title" type="text" placeholder="Escribe un título"
+      value={title} 
+      onChange={handleTitle} />
       </div>
       {/* Subtítulo */}
       <div className='mb-3'>
       <label className='form-label'>Subtítulo</label>
-      <input className='form-control' id="subtitle" type="text" placeholder="Subtítulo" onChange={handleSubtitle} />
+      <input className='form-control' id="subtitle" type="text" placeholder="Subtítulo" 
+      value={subtitle} 
+      onChange={handleSubtitle} />
       </div>
       {/* Contenido del post */}
       <div className='mb-3'>
         <label className='form-label'>Contenido *</label>
         <textarea id="content" className='form-control' placeholder="Contenido" 
         style={{height: "150px", width: "100%"}}
-        defaultValue="Escribe el contenido..." onChange={handleContent}></textarea>
+        defaultValue="Escribe el contenido..." 
+        onChange={handleContent}></textarea>
       </div>
       {/* Autor del post - no se puede editar */}
       <div className='mb-3'>
         <label className='form-label'>Author</label>
-        <input id="author" className='form-control' type="text" placeholder="Pepe" onChange={handleAuthorId} readOnly/>
+        <input id="author" className='form-control' type="text" 
+        placeholder="Pepe" 
+        value={authorId == 1 ? "Pepe" : ""}
+        onChange={handleAuthorId} readOnly/>
       </div>
       {/* Subida de imagen para el post */}
       <div className="mb-3">
       <label htmlFor="img" className="form-label">Selecciona una foto</label>
-      <input className="form-control" type="file" id="img" onChange={handleImg}/>
+      <input className="form-control" type="file" id="img" 
+      //  
+      onChange={handleImg}/>
       </div>
       {/* Select para a sección */}
       <div className='mb-3'>
       <label htmlFor="section" className='form-label'>Elige la sección: *</label>
-      <select name="section" id="section" className="form-select" onChange={handleSectionId}>
+      <select name="section" id="section" className="form-select" 
+      defaultValue={sectionId}
+      onChange={handleSectionId}>
         {/* TODO: Bucle con datos del servidor */}
         <option value="1">Últimos posts</option>
         <option value="2">Sección 2</option>

@@ -5,7 +5,8 @@ const Form = () => {
   const [title, setTitle] = useState(''); 
   const [subtitle, setSubtitle] = useState(''); 
   const [content, setContent] = useState(''); 
-  const [img, setImg] = useState(''); 
+  const [img, setImg] = useState(''); // string -> nombre de archivo
+  const [file, setFile] = useState(null) // archivo de img
   const [authorId, setAuthorId] = useState(1); 
   const [sectionId, setSectionId] = useState(1); 
   const [canSubmit, setCanSubmit] = useState(false);
@@ -23,7 +24,8 @@ const Form = () => {
     verificarDatos(); 
   }
   const handleImg = (e) => {
-    setImg(e.target.files[0].name);
+    setImg(e.target.files[0].name); // filename, string
+    setFile(e.target.files[0])      // archivo
     verificarDatos();
     // Datos de la imagen:
     console.group("Datos de la img:")
@@ -75,21 +77,38 @@ const Form = () => {
     e.preventDefault(); // Evita que se recargue la página
 
     // Envía los datos al servidor
-    const url = "http://localhost:3000/posts";
+    
+    const url = "http://localhost:3000/upload";
+    /*
     fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "image/jpeg",
         'Access-Control-Allow-Origin': '*'
       },
-      body: JSON.stringify({title, subtitle, content, img, authorId, sectionId})
+      body: JSON.stringify({title, subtitle, content, img, authorId, sectionId}),
+      file: file
     })
     .then(res => res.json())
     .then(data => console.log(data));
+  */
+//  IMG
+  var formdata = new FormData();
+  formdata.append("file", file, img);
 
-    resetearCampos();
-    alert("Datos enviados");
-  }
+  var requestOptions = {
+    method: 'POST',
+    body: formdata,
+    redirect: 'follow'
+  };
+
+  fetch("http://localhost:3000/upload", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+      resetearCampos();
+      alert("Datos enviados");
+    }
 
   return(
   <>

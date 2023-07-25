@@ -2,25 +2,39 @@ import { useState } from 'react';
 import '../assets/css/Form.css';
 
 const Form = () => {
-  const [title, setTitle] = useState(''); // Estado para el título con hook useState
-  const [content, setContent] = useState(''); // Estado para el contenido con hook useState
-  const [tags, setTags] = useState(''); // Estado para las etiquetas con hook useState
+  const [title, setTitle] = useState(''); 
+  const [subtitle, setSubtitle] = useState(''); 
+  const [content, setContent] = useState(''); 
+  const [img, setImg] = useState(''); 
+  const [authorId, setAuthorId] = useState(1); 
+  const [sectionId, setSectionId] = useState(1); 
 
-  // Función que escribe el título en consola y actualiza el estado
   const handleTitle = (e) => {
-    // Actualiza el estado de title con el valor del input
-    setTitle(e.target.value); // e.target.value es el valor del input
-    console.log("title:", e.target.value);
+    setTitle(e.target.value); 
   }
-  const handleTextarea = (e) => {
-    // Actualiza el estado del content con el valor del input
-    setContent(e.target.value); // e.target.value es el valor del textarea
-    console.log("content:", e.target.value);
+  const handleSubtitle = (e) => {
+    setSubtitle(e.target.value); 
   }
-  const handleTags = (e) => {
-    // Actualiza el estado de tags con el valor del input
-    setTags(e.target.value); // e.target.value es el valor del input
-    console.log("tags:", e.target.value);
+  const handleContent = (e) => {
+    setContent(e.target.value); 
+  }
+  const handleImg = (e) => {
+    setImg(e.target.files[0].name);
+    console.log("filename:", e.target.files[0].name)
+    console.log("type:", e.target.files[0].type)
+    console.log("size (Bytes):", e.target.files[0])
+    console.log("title:", title);
+    console.log("subtitle:", subtitle);
+    console.log("content:", content);
+    console.log("img:", e.target.value);
+    console.log("authorId:", authorId); 
+    console.log("sectionId:", sectionId); 
+  }
+  const handleAuthorId = (e) => {
+    setAuthorId(e.target.value); 
+  }
+  const handleSectionId = (e) => {
+    setSectionId(e.target.value);
   }
   const resetearCampos = () => {
     setTitle('');
@@ -68,29 +82,29 @@ const Form = () => {
       {/* Subtítulo */}
       <div className='mb-3'>
       <label className='form-label'>Subtítulo</label>
-      <input className='form-control' id="subtitle" type="text" placeholder="Subtítulo" onChange={handleTitle} />
+      <input className='form-control' id="subtitle" type="text" placeholder="Subtítulo" onChange={handleSubtitle} />
       </div>
       {/* Contenido del post */}
       <div className='mb-3'>
         <label className='form-label'>Contenido *</label>
         <textarea id="content" className='form-control' placeholder="Contenido" 
         style={{height: "150px", width: "100%"}}
-        defaultValue="Escribe el contenido..." onChange={handleTextarea}></textarea>
+        defaultValue="Escribe el contenido..." onChange={handleContent}></textarea>
       </div>
       {/* Autor del post - no se puede editar */}
       <div className='mb-3'>
         <label className='form-label'>Author</label>
-        <input id="author" className='form-control' type="text" placeholder="Pepe" readOnly/>
+        <input id="author" className='form-control' type="text" placeholder="Pepe" onChange={handleAuthorId} readOnly/>
       </div>
       {/* Subida de imagen para el post */}
       <div className="mb-3">
-      <label for="img" class="form-label">Selecciona una foto</label>
-      <input className="form-control" type="file" id="img"/>
+      <label htmlFor="img" className="form-label">Selecciona una foto</label>
+      <input className="form-control" type="file" id="img" onChange={handleImg}/>
       </div>
       {/* Select para a sección */}
       <div className='mb-3'>
       <label htmlFor="section" className='form-label'>Elige la sección: *</label>
-      <select name="section" id="section" class="form-select">
+      <select name="section" id="section" className="form-select" onChange={handleSectionId}>
         {/* TODO: Bucle con datos del servidor */}
         <option value="1">Últimos posts</option>
         <option value="2">Sección 2</option>

@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 const Post = (props) => {
-  const {title, subtitle, img} = props
+  const {id, title, subtitle, img} = props
   return(
   <>
   <div className='col'>
@@ -17,11 +17,11 @@ const Post = (props) => {
         {title}
       </Card.Title>}
       {subtitle && 
-      <Card.Text style={{height:"75px"}}> 
+      <Card.Text style={{height:"75px"}} key={`${id}-1`}> 
         {subtitle}
       </Card.Text>}
       {!subtitle && 
-      <Card.Text style={{height:"75px"}}> 
+      <Card.Text style={{height:"75px"}} key={`${id}-2`}> 
         &nbsp;
       </Card.Text>}
       <Button variant="primary">Click</Button>

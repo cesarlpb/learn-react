@@ -3,8 +3,11 @@ import Post from './Post';
 import json from '../assets/json/posts.json';
 
 const PostContainer = (props) => {
-  const {id, title} = props
+  const {sectionId, id, title} = props
   const [posts, setPosts] = useState([])
+  const rand = () => {
+    return `key-${parseInt(Math.random()*1000)}`
+  }
   useEffect(() => {
   {/* 1. Leer el JSON y seleccionar un section a partir del id que me pasan por props */}
   // id -> identificador de seccion (1, 2, 3)
@@ -20,8 +23,10 @@ const PostContainer = (props) => {
     {title && <h2>{title}</h2>}
     {/* Idea: Crear un componente <Post id="1" seoTitle="lorem" descripcion="seo" variant=""> */}
     {/* 2. Bucle en ese array */}
-    {posts && <div className='row g-3 py-0'>
+    {posts && <div key="1" className='row g-3 py-0'>
       {posts.map(post => <Post 
+        key={`${sectionId}-${post.id}`}
+        id={post.id}
         title={post.title}
         subtitle={post.subtitle}
         img={post.image}

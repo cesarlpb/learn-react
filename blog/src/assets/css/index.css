@@ -73,3 +73,12 @@ button:focus-visible {
   min-height: 400px!important;
   max-height: 400px!important;
 }
+
+/* Navbar */
+#navbar a{
+  text-decoration: none;
+  color: #212529;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

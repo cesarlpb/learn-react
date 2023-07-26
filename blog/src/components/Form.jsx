@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import '../assets/css/Form.css';
 
+const baseUrl = "79.143.92.203";
+const port = "3000";
+
 const Form = () => {
   const [title, setTitle] = useState(''); 
   const [subtitle, setSubtitle] = useState(''); 
@@ -88,7 +91,7 @@ const Form = () => {
 
     // Envía los datos al servidor -> endpoint /posts
     
-    const postsEndpoint = "http://localhost:3000/posts";
+    const postsEndpoint = `http://${baseUrl}:${port}/posts`;
     // req para crear post
     fetch(postsEndpoint, {
       method: "POST",
@@ -111,28 +114,8 @@ const Form = () => {
     
     // IMG
     
-    const uploadEndpoint = "http://localhost:3000/upload";
-    /*
-    console.log("req:", {
-      method: "POST",
-      headers: {
-        "Content-Type": contentType,
-        'Access-Control-Allow-Origin': '*'
-      },
-      file:file
-    })
-    fetch(uploadEndpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": contentType,
-        'Access-Control-Allow-Origin': '*'
-      },
-      file:file
-    })
-    .then(res => res.json())
-    .then(data => console.log(data));
-  }*/
-  var formdata = new FormData();
+    const uploadEndpoint = `http://${baseUrl}:${port}/upload`;
+    const formdata = new FormData();
 formdata.append("file", file, file.name);
 
 var requestOptions = {
@@ -141,7 +124,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("http://localhost:3000/upload", requestOptions)
+fetch(uploadEndpoint, requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));

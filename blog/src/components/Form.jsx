@@ -37,9 +37,10 @@ const Form = () => {
     verificarDatos();
     // Datos de la imagen:
     console.group("Datos de la img:")
+    console.log("File:", e.target.files[0])
     console.log("name:", e.target.files[0].name)
     console.log("type:", e.target.files[0].type)
-    console.log("size (Bytes):", e.target.files[0])
+    console.log("size (Bytes):", e.target.files[0].size)
     console.log("contentType:", contentTypeActual) 
     console.groupEnd()
   }

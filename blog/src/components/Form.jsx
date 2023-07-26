@@ -76,39 +76,31 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // Evita que se recargue la página
 
-    // Envía los datos al servidor
+    // Envía los datos al servidor -> endpoint /posts
     
-    const url = "http://localhost:3000/upload";
-    /*
+    const url = "http://localhost:3000/posts";
+    
     fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "image/jpeg",
+        "Content-Type": "application/json",
         'Access-Control-Allow-Origin': '*'
       },
-      body: JSON.stringify({title, subtitle, content, img, authorId, sectionId}),
-      file: file
+      body: JSON.stringify(
+        {
+          title, 
+          subtitle, 
+          content, 
+          img, 
+          authorId, 
+          sectionId
+        }),
     })
     .then(res => res.json())
     .then(data => console.log(data));
-  */
-//  IMG
-  var formdata = new FormData();
-  formdata.append("file", file, img);
-
-  var requestOptions = {
-    method: 'POST',
-    body: formdata,
-    redirect: 'follow'
-  };
-
-  fetch("http://localhost:3000/upload", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-      resetearCampos();
-      alert("Datos enviados");
-    }
+    // IMG
+    // req con file
+  }
 
   return(
   <>

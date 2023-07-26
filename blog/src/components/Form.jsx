@@ -128,7 +128,10 @@ fetch(uploadEndpoint, requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
-  }
+
+resetearCampos();
+alert("Datos enviados y foto subida")
+}
   return(
   <>
   <div id="form" className='pb-3'>

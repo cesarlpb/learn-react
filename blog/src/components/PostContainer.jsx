@@ -26,19 +26,25 @@ const PostContainer = (props) => {
         return res.text()
       })
       .then(texto => console.log("texto:", texto))
-  // Si el servidor no está activo -> leemos JSON
-  // Si el servidor ESTÁ activo -> pedimos posts
-  if(isServerActive){
-    // fetch de posts
-  }else{
-    /* 1. Leer el JSON y seleccionar un section a partir del id que me pasan por props */}
-    // id -> identificador de seccion (1, 2, 3)
-    const section = json.filter(section => section.id == id) // Filtramos el section que tiene el id que nos han pasado
-    // Observación: json.filter(...) devuelve un array.
-    setPosts(section[0].posts) // Actualizamos el estado de los posts. Accedemos al array de posts de este section
   }
-  
   }, []) // [] -> no hay condición para volver a ejecutar el useEffect(...)
+
+  useEffect(() => {
+    // Si el servidor no está activo -> leemos JSON
+    // Si el servidor ESTÁ activo -> pedimos posts
+    if(isServerActive){
+      console.info("Servidor ON. Hacemos fetch(...)")
+      // fetch
+    }else{
+      console.warn("Servidor OFF. Leemos JSON")
+      // 1. Leer el JSON y seleccionar un section a partir del id que me pasan por props
+      // id -> identificador de seccion (1, 2, 3)
+      const section = json.filter(section => section.id == id) // Filtramos el section que tiene el id que nos han pasado
+      // Observación: json.filter(...) devuelve un array.
+      setPosts(section[0].posts) // Actualizamos el estado de los posts. Accedemos al array de posts de este section
+    }
+  },[isServerActive])
+
   return (
   <>
   <div className='container py-3'>

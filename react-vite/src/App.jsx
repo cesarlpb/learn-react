@@ -1,42 +1,28 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Routes, Route } from "react-router-dom";
 import './App.css'
 
+import Layout from './Layout';
+import OtroLink from './OtroLink';
+import About from './About';
+import Error404 from './Error404';
+import Home from './Home';
+
 function App() {
-  const [count, setCount] = useState(0)
-  const incrementarContador = () => setCount((count) => count - 1)
-  const decrementarContador = () => setCount((count) => count + 1)
-
-  useEffect(() => {
-    // console.log("Ha cargado el componente. Hola, desde useEffect")
-    if (count !== 0) {
-        console.log("Ha cambiado count, ahora vale:", count);
-    }
-    return;
-}, [count]);
-
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Contador:</h1>
-      <div className="card">
-        <button onClick={incrementarContador}>
-          restar 1: {count}
-        </button>
-        &nbsp;
-        <button onClick={decrementarContador}>
-          sumar 1: {count}
-        </button>
-      </div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="acerca-de" element={<About />} />
+          <Route path="otro-link" element={<OtroLink />} />
+
+          {/* Using path="*"" means "match anything", so this route
+                acts like a catch-all for URLs that we don't have explicit
+                routes for. */}
+          <Route path="*" element={<Error404 />} />
+        </Route>
+      </Routes>
     </>
   )
 }

@@ -1,6 +1,6 @@
 ## Crear proyecto de React
 
-❌ Forma no recomendada (es más lento): `npx create-react-app`
+❌ Forma no recomendada (es más lento): `npx create-react-app` creado en [mi-primer-react](./mi-primer-react/)
 
 ## Vite 
 
@@ -14,7 +14,7 @@
 
 - Crear proyecto de React:
 
-✅ Forma recomendada: `npm create vite@latest`
+✅ Forma recomendada: `npm create vite@latest` creado en [react-vite](./react-vite/)
 
 Elijo `react-vite` como nombre, `React` y `Javascript`:
 

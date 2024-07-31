@@ -1,5 +1,13 @@
+import { useState, useEffect } from 'react'
+
 function Footer() {
-  return <div>Footer &copy; 2024</div>
+  const [year, setYear] = useState(2024);
+  useEffect(() => {
+    console.log("Ha cambiado el estado year:", year)
+    return;
+  }, [year]);
+
+  return <div>Footer &copy; {year}</div>
 }
 
 export default Footer

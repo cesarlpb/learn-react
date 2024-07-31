@@ -5,6 +5,8 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const incrementarContador = () => setCount((count) => count - 1)
+  const decrementarContador = () => setCount((count) => count + 1)
 
   return (
     <>
@@ -18,11 +20,11 @@ function App() {
       </div>
       <h1>Contador:</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count - 1  )}>
+        <button onClick={incrementarContador}>
           restar 1: {count}
         </button>
         &nbsp;
-        <button onClick={() => setCount((count) => count + 1  )}>
+        <button onClick={decrementarContador}>
           sumar 1: {count}
         </button>
       </div>

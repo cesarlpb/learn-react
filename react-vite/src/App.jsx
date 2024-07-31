@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -7,6 +7,12 @@ function App() {
   const [count, setCount] = useState(0)
   const incrementarContador = () => setCount((count) => count - 1)
   const decrementarContador = () => setCount((count) => count + 1)
+
+  useEffect(() => {
+    // console.log("Ha cargado el componente. Hola, desde useEffect")
+    console.log("Ha cambiado count, ahora vale:", count)
+    return ;
+  }, [count]);
 
   return (
     <>

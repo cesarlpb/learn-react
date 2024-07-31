@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 
-function Footer() {
+function Footer( props ) {
   const [year, setYear] = useState(2024);
   useEffect(() => {
     console.log("Ha cambiado el estado year:", year)
     return;
   }, [year]);
 
-  return <div>Footer &copy; {year}</div>
+  return (
+    <div>{ props.descripcion ? props.descripcion : "Descripción genérica" } &copy; {year}</div>
+  )
 }
 
 export default Footer

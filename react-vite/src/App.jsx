@@ -10,9 +10,12 @@ function App() {
 
   useEffect(() => {
     // console.log("Ha cargado el componente. Hola, desde useEffect")
-    console.log("Ha cambiado count, ahora vale:", count)
-    return ;
-  }, [count]);
+    if (count !== 0) {
+        console.log("Ha cambiado count, ahora vale:", count);
+    }
+    return;
+}, [count]);
+
 
   return (
     <>

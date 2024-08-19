@@ -27,7 +27,7 @@ function Home(){
         </a>
     </div>
     <h1>Contador:</h1>
-    <div className="card">
+    <div className="bg-secondary card">
       <button onClick={incrementarContador}>
         restar 1: {count}
       </button>

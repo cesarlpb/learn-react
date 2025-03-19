@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+function MiParrafo1() {
+  return <p>Mi párrafo 1</p>;
 }
 
-export default App
+const MiParrafo2 = () => <p>Mi párrafo 2</p>;
+
+function MisParrafos() {
+  return (
+    <>
+      <p id="p1">Mi párrafo 3.1</p>
+      <p className="p2">Mi párrafo 3.2</p>
+      <p style={{ color: "red" }}>Mi párrafo con estilos inline 3.3</p>
+    </>
+  );
+}
+
+function App() {
+  const string = "React";
+  return (
+    <>
+      <h1>
+        Hola, mundo <em>{string}</em>
+      </h1>
+
+      <MiParrafo1 />
+
+      <MiParrafo2 />
+
+      <MisParrafos />
+    </>
+  );
+}
+
+export default App;

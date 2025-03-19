@@ -44,9 +44,9 @@ Proyecto de React con `vite`.
 ![paso 4](image-3.png)
 
 ```bash
-  cd algo-que-mole # entrar en la carpeta creada para el proyecto
-  npm install      # instalamos las librerías necesarias
-  npm run dev      # iniciamos el proyecto
+  cd mi-primer-react # entrar en la carpeta creada para el proyecto
+  npm install        # instalamos las librerías necesarias
+  npm run dev        # iniciamos el proyecto
 ```
 
 - Vemos la página en localhost:

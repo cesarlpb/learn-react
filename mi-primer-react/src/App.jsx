@@ -1,4 +1,5 @@
-import './App.css'
+import './App.css';
+import MyButton from './MyButton';
 
 function MiParrafo1() {
   return <p>Mi párrafo 1</p>;
@@ -29,6 +30,9 @@ function App() {
       <MiParrafo2 />
 
       <MisParrafos />
+
+      <MyButton />
+
     </>
   );
 }

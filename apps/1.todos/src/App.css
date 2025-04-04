@@ -1,0 +1,89 @@
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+h1 {
+  text-align: center;
+}
+nav, form {
+  display: inline-block;
+  margin: 1em auto;
+  /* Se auto selecciona el mínimo de los valores: */
+  max-width: min(60vw, 400px);
+  min-width: 350px;
+}
+nav > ul {
+  list-style: none;
+  padding-left: 0;
+  & li {
+      padding-left: 0;
+  }
+  & a > span:last-of-type {
+      text-decoration: underline;
+      font-weight: 500;
+  }
+}
+form label {
+  display: block;
+  font-weight: 500;
+}
+form input, form textarea {
+  display: inline-block;
+  width: 100%;
+  /* Colocamos border-box para que no desborden 
+  los elementos de sus parents */
+  box-sizing: border-box;
+}
+form textarea {
+  margin: 0;
+}
+form div {
+  margin-bottom: 1em;
+}
+#submit-container {
+  text-align: right;
+}
+/* Usamos selectores anidados */
+#lista, #todo {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: min(60vw, 400px);
+  min-width: 350px;
+  align-items: center;
+  margin: 0 auto;
+  gap: 1.5em;
+}
+.card {
+  display: inline-block;
+  background-color: oklch(82.8% 0.189 84.429);
+  max-width: min(60vw, 300px);
+  min-width: 300px;
+  padding: 1em;
+  border-radius: 0.75em;
+
+  & h3 {
+      font-size: 2em;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  & div:first-of-type {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+  }
+}
+/* .card-id{
+
+} */
+.card-title{
+  text-decoration: underline;
+}
+/* .card-description{
+
+} */
+.card-date{
+  text-align: right;
+  color: oklch(44.6% 0.03 256.802);
+}
